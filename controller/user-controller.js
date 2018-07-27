@@ -1,31 +1,73 @@
+const UserService = require('../service/user-service')
+const UserRepo = require('../repository/user-repository')
+
+const USER_SSR_PATH = '../client/dist/main.js';
+const USER_SPA_PATH = '../client/dist/_index.html';
+
 class UserController {
-  constructor(userService) {
+  constructor(userService, config) {
     this.userService = userService;
+    this.config = config;
   }
 
   index() {
     return async (ctx, next) => {
-      throw new Error('sss');
-      var userId = ctx.meta.userId;
-      ctx.body = await this.userService.getView(userId);
+      ctx.view = {
+        component: USER_SSR_PATH, 
+        template:  USER_SPA_PATH,
+        props: await this.userService.getUser(ctx.meta.userId)
+      }
+      await next();
     }
   }
 
   submit() {
-    return async (ctx) => {
-      var userId = ctx.meta.userId;
-      var data = ctx.request.body;
-      await this.userService.submitUser(userId, data);
+    return async (ctx, next) => {
+      await this.userService.submitUser(
+        ctx.meta.userId, 
+        ctx.request.body
+      );
 
-      ctx.body = await this.userService.getView();
+      ctx.view = {
+        component: USER_SSR_PATH, 
+        template:  USER_SPA_PATH,
+        props: await this.userService.getUser(ctx.meta.userId)
+      }
+      await next();
     }
   }
 
   update() {
-    return async (ctx) => {
-      ctx.body = await this.userService.updateUser();
+    return async (ctx, next) => {
+      await this.userService.submitUser(
+        ctx.meta.userId, 
+        ctx.request.body
+      );
+
+      ctx.view = {
+        response: 'user field get updated'
+      }
+      await next();
     }
   }
 }
 
-module.exports = UserController;
+/**
+ * makeUserController makes a 
+ * 
+ * @param {*} config 
+ * @param {*} db 
+ */
+function makeUserController(config, db) {
+  return new UserController(
+    new UserService(
+      new UserRepo(db)
+    ),
+    config
+  )
+}
+
+module.exports = {
+  UserController,
+  makeUserController 
+};

@@ -1,22 +1,25 @@
 const Koa = require('koa');
-const router = require('./router')
+const routeMaker = require('./router')
 const middleware = require('./middleware')
 const config = require('./config')(process.env);
 
 const app = new Koa();
+const db = null
+const router = routeMaker(config, db);
 
 // Set my app custom middlewares
 app
-  .use(middleware.handleErrors())
+  .use(middleware.handleError())
   .use(middleware.responseTime())
   .use(middleware.logger())
-  .use(middleware.bodyParser())
-  .use(middleware.static(config.staticRoot))
-  .use(middleware.authenticates());
+  .use(middleware.handleParser())
+  .use(middleware.handleStatic(config.staticRoot))
+  .use(middleware.handleMeta(config.ssr));
 
 // Set my app route middlewares
 app
   .use(router.routes())
-  .use(router.allowedMethods());
+  .use(router.allowedMethods())
+  .use(middleware.renderView());
 
 app.listen(config.serverPort);

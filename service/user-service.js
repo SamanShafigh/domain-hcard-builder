@@ -1,15 +1,10 @@
-const tplService = require('./template-service')
-const hCardComponent = require('../public/main.js').default;
-
 class UserService {
   constructor(userRepository) {
     this.userRepository = userRepository;
   }
 
-  async getView(userId) {
-    var props = await this.userRepository.get(userId);
-
-    return tplService.render(hCardComponent, props);
+  async getUser(userId) {
+    return await this.userRepository.get(userId);
   }  
 
   async submitUser(userId, data) {

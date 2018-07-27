@@ -1,5 +1,6 @@
 const BodyReceiver = require('bodyreceiver');
 const serveStatic = require('koa-static');
+const tplService = require('./service/template-service')
 
 function responseTime() {
   return async (ctx, next) => {
@@ -19,54 +20,82 @@ function logger() {
   }
 }
 
-function user() {
-  return async (ctx, next) => {
-    const start = Date.now();
-    await next();
-    const ms = Date.now() - start;
-    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
-  }
-}
 
-function authenticates() {
+function handleMeta(ssr) {
   return async (ctx, next) => {
+    // Maybe we can use 
+    // <noscript>
+    //  <a href="link to an api end point to set user view mode">
+    //    View this site in noscript mode
+    //  </a>
+    // </noscript>
+    var canUserRunScript = false;
+    // We can use ssr to force system to do server side rendering
+    var noscript = ssr || canUserRunScript
+
     ctx.meta = {
-      userId: 1
+      userId: 1,
+      noscript: noscript
     }
 
     await next();
   }
 }
 
-function handleErrors() {
+function handleError() {
   return async (ctx, next) => {
     return next().catch((err) => {
       if (err.status == 401) {
         ctx.status = 401;
-        ctx.body = 'Protected resource, use Authorization header to get access\n';
+        ctx.body = `Oops! Protected resource, use Authorization\n`;
       } else {
-        ctx.body = `Opps we get ${err}\n`;
+        ctx.body = `Oops! We're having a problem. Error: ${err}\n`;
       }
     });
   }
 }
 
-function bodyParser() {
+function handleParser() {
   var bodyReceiver = new BodyReceiver();
 
   return bodyReceiver.startup();
 }
 
-function static(root) {
+function handleStatic(root) {
   return serveStatic(root);
+}
+
+function renderView() {
+  return async (ctx, next) => {
+    // If we expect some restfull responses do this
+    if (ctx.view.response !== undefined) {
+      ctx.body = ctx.view.response;
+    } else {
+      // If noscript mode is defined and also a component is defined
+      // we will perfomr server side rendering
+      if (ctx.meta.noscript && ctx.view.component !== undefined) {
+        ctx.body = tplService.render(
+          ctx.view.component, 
+          ctx.view.props
+        );
+      // Otherwise we just serve a SPA landing page
+      } else if (ctx.view.template !== undefined) {
+        ctx.type = 'html'
+        ctx.body = tplService.serve(ctx.view.template)
+      } 
+    }
+
+    await next();
+  }
 }
 
 // Exposing my Public apis
 module.exports = {
   responseTime,
   logger,
-  authenticates,
-  handleErrors,
-  bodyParser,
-  static,
+  handleMeta,
+  handleError,
+  handleParser,
+  handleStatic,
+  renderView,
 }

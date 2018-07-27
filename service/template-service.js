@@ -1,3 +1,4 @@
+const { createReadStream } = require('fs');
 const React = require('react');
 const ReactDom = require('react-dom/server')
 global.React = React;
@@ -23,10 +24,20 @@ function html(body) {
   `;
 } 
 
-module.exports.render = (component, props) => {
+function render(path, props) {
+  const component = require(path).default;
   var body = ReactDom.renderToString(
     React.createElement(component, props)
   );
 
   return html(body);
+}
+
+function serve(path) {
+  return createReadStream(`${__dirname}/${path}`)
+}
+
+module.exports = {
+  render,
+  serve
 }
