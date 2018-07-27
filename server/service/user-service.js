@@ -11,8 +11,8 @@ class UserService {
     return await this.userRepository.save(userId, data);
   }
 
-  async updateUser(userId, data) {
-    return await this.userRepository.save(userId, data);
+  async updateUser(userId, key, value) {
+    return await this.userRepository.update(userId, key, value);
   }
 }
 

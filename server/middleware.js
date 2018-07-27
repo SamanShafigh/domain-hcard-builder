@@ -21,7 +21,7 @@ function logger() {
 }
 
 
-function handleMeta(ssr) {
+function handleMeta(renderMode) {
   return async (ctx, next) => {
     // Maybe we can use 
     // <noscript>
@@ -29,10 +29,11 @@ function handleMeta(ssr) {
     //    View this site in noscript mode
     //  </a>
     // </noscript>
-    var canUserRunScript = false;
-    // We can use ssr to force system to do server side rendering
-    var noscript = ssr || canUserRunScript
+    var userCanRunScript = true;
 
+    // We can use ssr to force system to do server side rendering
+    var noscript = renderMode === 'ssr' || !userCanRunScript
+    console.log(noscript)
     ctx.meta = {
       userId: 1,
       noscript: noscript

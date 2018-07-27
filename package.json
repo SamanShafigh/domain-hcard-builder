@@ -1,20 +1,28 @@
 {
-  "name": "koa-test",
+  "name": "domain-hcard-builder",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./server/index.js",
+    "start:spa": "RENDER_MODE=spa node ./server/index.js",
+    "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Saman Shafigh <saman.shafigh@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "bodyreceiver": "1.0.1",
     "koa": "2.5.2",
+    "koa-mongoose": "2.0.0",
     "koa-router": "7.4.0",
     "koa-static": "5.0.0",
+    "mongodb": "3.1.1",
+    "mongoose": "5.2.5",
     "react": "15.4.1",
     "react-dom": "15.4.1"
+  },
+  "devDependencies": {
+    "jest": "23.4.1"
   }
 }

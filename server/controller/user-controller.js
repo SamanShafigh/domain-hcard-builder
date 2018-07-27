@@ -1,8 +1,9 @@
 const UserService = require('../service/user-service')
 const UserRepo = require('../repository/user-repository')
+const { getKeyValue } = require('../util')
 
-const USER_SSR_PATH = '../client/dist/main.js';
-const USER_SPA_PATH = '../client/dist/_index.html';
+const USER_SSR_PATH = '../../client/dist/main.js';
+const USER_SPA_PATH = '../../client/dist/_index.html';
 
 class UserController {
   constructor(userService, config) {
@@ -39,13 +40,15 @@ class UserController {
 
   update() {
     return async (ctx, next) => {
-      await this.userService.submitUser(
+      var { key, value } = getKeyValue(ctx.request.body);
+      await this.userService.updateUser(
         ctx.meta.userId, 
-        ctx.request.body
+        key,
+        value
       );
 
       ctx.view = {
-        response: 'user field get updated'
+        response: `user field ${key} get updated to ${value}`
       }
       await next();
     }
