@@ -1,0 +1,21 @@
+{
+  "name": "koa-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "2.5.2",
+    "koa-router": "7.4.0",
+    "koa-static": "5.0.0",
+    "prop-types": "15.6.2",
+    "react": "15.4.1",
+    "react-dom": "15.4.1",
+    "react-dom-server": "0.0.5"
+  }
+}
