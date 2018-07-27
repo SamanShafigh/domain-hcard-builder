@@ -1,5 +1,5 @@
-const BodyReceiver = require('bodyreceiver');
 const serveStatic = require('koa-static');
+var bodyParser = require('koa-bodyparser');
 const tplService = require('./service/template-service')
 
 function responseTime() {
@@ -57,9 +57,7 @@ function handleError() {
 }
 
 function handleParser() {
-  var bodyReceiver = new BodyReceiver();
-
-  return bodyReceiver.startup();
+  return bodyParser();
 }
 
 function handleStatic(root) {
