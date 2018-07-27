@@ -1,5 +1,5 @@
 class UserRepository {
-  get() {
+  get(userId) {
     return new Promise((resolve, reject) => {
       var data = {
         givenName: 'Samssss',
@@ -18,7 +18,7 @@ class UserRepository {
     });
   }
 
-  save(data) {
+  save(userId, data) {
     return new Promise((resolve, reject) => {
       resolve(`we are going to save user data ${data}`)
     })

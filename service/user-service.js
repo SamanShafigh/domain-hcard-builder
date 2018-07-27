@@ -13,11 +13,11 @@ class UserService {
   }  
 
   async submitUser(userId, data) {
-    return await this.userRepository.save(user);
+    return await this.userRepository.save(userId, data);
   }
 
   async updateUser(userId, data) {
-    return await this.userRepository.save(user);
+    return await this.userRepository.save(userId, data);
   }
 }
 

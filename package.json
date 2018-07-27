@@ -10,12 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bodyreceiver": "1.0.1",
     "koa": "2.5.2",
     "koa-router": "7.4.0",
     "koa-static": "5.0.0",
-    "prop-types": "15.6.2",
     "react": "15.4.1",
-    "react-dom": "15.4.1",
-    "react-dom-server": "0.0.5"
+    "react-dom": "15.4.1"
   }
 }
