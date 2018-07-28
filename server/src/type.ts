@@ -105,7 +105,7 @@ declare namespace HCardT {
      * @param data 
      * @param options 
      */
-    save(model: string, query: any, data: any, options?: any): Promise<void>;
+    save(model: string, query: any, data: any, options?: any): Promise<any>;
     
     /**
      * Update entity
@@ -114,7 +114,7 @@ declare namespace HCardT {
      * @param data 
      * @param options 
      */
-    update(model: string, query: any, data: any, options?: any): Promise<void>;
+    update(model: string, query: any, data: any, options?: any): Promise<any>;
   }
 
   /** UserService is to abstract the main logic related to User */

@@ -1,19 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_model_1 = require("../model/user-model");
+const MODEL_NAME = 'user';
 /**
  * UserService is to abstract the main logic related to User
  */
 class UserService {
-    constructor(userRepository) {
-        this.userRepository = userRepository;
+    constructor(dbDriver) {
+        this.dbDriver = dbDriver;
     }
     /**
      * Get a user and if user does not exist returns null
      * @param userId
      */
     async getUser(userId) {
-        return await this.userRepository.get(userId);
+        var result = await this.dbDriver
+            .findOne(MODEL_NAME, { userId }, { _id: 0 });
+        return result ? user_model_1.default(result.data) : null;
     }
     /**
      * Submit a user data
@@ -22,7 +25,8 @@ class UserService {
      */
     async submitUser(userId, data) {
         const user = user_model_1.default(data);
-        return await this.userRepository.save(userId, user);
+        return await this.dbDriver
+            .update(MODEL_NAME, { userId }, { data: user });
     }
     /**
      * Update a user parameter
@@ -31,7 +35,9 @@ class UserService {
      * @param value
      */
     async updateUser(userId, key, value) {
-        return await this.userRepository.update(userId, key, value);
+        var reference = `data.${key}`;
+        return await this.dbDriver
+            .update(MODEL_NAME, { userId }, { [reference]: value });
     }
 }
 exports.default = UserService;

@@ -1,5 +1,4 @@
 import UserService from '../service/user-service'
-import UserRepo from '../repository/user-repository'
 import { getKeyValue } from '../util'
 import HCardT from '../type';
 
@@ -70,7 +69,7 @@ class UserController implements HCardT.UserController {
  */
 export function make(config: HCardT.Config, dbDriver: any): HCardT.UserController {
   return new UserController(
-    new UserService(dbDriver),
+    new UserService(dbDriver), 
     config
-  )
+  );
 }

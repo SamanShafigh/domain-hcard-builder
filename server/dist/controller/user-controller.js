@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_service_1 = require("../service/user-service");
-const user_repository_1 = require("../repository/user-repository");
 const util_1 = require("../util");
 /**
  * UserController is to abstract the user related controllers
@@ -52,8 +51,8 @@ class UserController {
  * @param {*} config
  * @param {*} db
  */
-function make(config, db) {
-    return new UserController(new user_service_1.default(new user_repository_1.default(db)), config);
+function make(config, dbDriver) {
+    return new UserController(new user_service_1.default(dbDriver), config);
 }
 exports.make = make;
 //# sourceMappingURL=user-controller.js.map

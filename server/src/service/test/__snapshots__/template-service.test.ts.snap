@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test template service test html function 1`] = `
+"
+  <!DOCTYPE html>
+  <html lang=\\"en\\">
+    <head>
+      <meta charset=\\"utf-8\\">
+      <meta http-equiv=\\"X-UA-Compatible\\" content=\\"IE=edge\\">
+      <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
+      <title>Live hCard Preview</title>
+  
+      <link href=\\"css/bootstrap.min.css\\" rel=\\"stylesheet\\" >
+      <link href=\\"css/main.css\\" rel=\\"stylesheet\\">
+    </head>
+  
+    <body>
+      some content
+    </body>
+  </html>
+  "
+`;
+
+exports[`Test template service test render a react component 1`] = `
+"
+  <!DOCTYPE html>
+  <html lang=\\"en\\">
+    <head>
+      <meta charset=\\"utf-8\\">
+      <meta http-equiv=\\"X-UA-Compatible\\" content=\\"IE=edge\\">
+      <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
+      <title>Live hCard Preview</title>
+  
+      <link href=\\"css/bootstrap.min.css\\" rel=\\"stylesheet\\" >
+      <link href=\\"css/main.css\\" rel=\\"stylesheet\\">
+    </head>
+  
+    <body>
+      <h1 data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"1245974022\\"></h1>
+    </body>
+  </html>
+  "
+`;
+
+exports[`Test template service test serve a html file 1`] = `
+"<!DOCTYPE html>
+<html lang=\\"en\\">
+<head>
+  <meta charset=\\"UTF-8\\">
+  <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\">
+  <meta http-equiv=\\"X-UA-Compatible\\" content=\\"ie=edge\\">
+  <title>Document</title>
+</head>
+<body>
+  This is for test only
+</body>
+</html>"
+`;

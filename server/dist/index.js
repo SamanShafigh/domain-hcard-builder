@@ -8,8 +8,8 @@ const dbdriver_service_1 = require("./service/dbdriver-service");
 (async () => {
     const app = new Koa();
     const config = config_1.makeConfig(process.env);
-    const db = await dbdriver_service_1.dbConnect(config.dbUri, config.dbName);
-    const router = router_1.makeRouter(config, db);
+    const dbDriver = await dbdriver_service_1.makeDbDriver(config.dbUri, config.dbName);
+    const router = router_1.makeRouter(config, dbDriver);
     // Set my app custom middlewares
     app
         .use(middleware.handleError())

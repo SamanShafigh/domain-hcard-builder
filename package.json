@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --notify --config=jest.config.js",
-    "test:watch": "jest --notify --watch --config=jest.config.js",
+    "test": "jest --bail --watch --config=jest.config.js",
+    "test:watch": "jest --notify --bail --watch --config=jest.config.js",
     "start": "node ./server/dist/index.js",
     "start:spa": "RENDER_MODE=spa node ./server/dist/index.js",
     "dev:test": "jest",

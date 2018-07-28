@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test user controller test get index page 1`] = `
+Object {
+  "meta": Object {
+    "noscript": true,
+    "userId": "1234",
+  },
+  "view": Object {
+    "component": "./dist/main.js",
+    "props": User {
+      "country": "country",
+      "email": "email",
+      "givenName": "givenName",
+      "houseNumber": "houseNumber",
+      "phone": "phone",
+      "postcode": "postcode",
+      "state": "state",
+      "street": "street",
+      "suburb": "suburb",
+      "surname": "surname",
+    },
+    "template": "./dist/_index.html",
+  },
+}
+`;
+
+exports[`Test user controller test submit api 1`] = `
+Object {
+  "meta": Object {
+    "noscript": true,
+    "userId": "1234",
+  },
+  "request": Object {
+    "body": Object {
+      "country": "country",
+      "email": "email",
+      "givenName": "givenName",
+      "houseNumber": "houseNumber",
+      "phone": "phone",
+      "postcode": "postcode",
+      "state": "state",
+      "street": "street",
+      "suburb": "suburb",
+      "surname": "surname",
+    },
+  },
+  "view": Object {
+    "component": "./dist/main.js",
+    "props": User {
+      "country": "country",
+      "email": "email",
+      "givenName": "givenName",
+      "houseNumber": "houseNumber",
+      "phone": "phone",
+      "postcode": "postcode",
+      "state": "state",
+      "street": "street",
+      "suburb": "suburb",
+      "surname": "surname",
+    },
+    "template": "./dist/_index.html",
+  },
+}
+`;
+
+exports[`Test user controller test update api 1`] = `
+Object {
+  "meta": Object {
+    "noscript": true,
+    "userId": "1234",
+  },
+  "request": Object {
+    "body": Object {
+      "country": "country",
+      "email": "email",
+      "givenName": "givenName",
+      "houseNumber": "houseNumber",
+      "phone": "phone",
+      "postcode": "postcode",
+      "state": "state",
+      "street": "street",
+      "suburb": "suburb",
+      "surname": "surname",
+    },
+  },
+  "view": Object {
+    "response": "user field givenName get updated to givenName",
+  },
+}
+`;

@@ -4,7 +4,7 @@ import HCardT from '../type';
 /**
  * This is a default DB storage driver currently we support
  */
-class MongoDbDriver implements HCardT.DbDriver {
+export class MongoDbDriver implements HCardT.DbDriver {
   db: any
   constructor(db: any) {
     this.db = db;
@@ -29,8 +29,8 @@ class MongoDbDriver implements HCardT.DbDriver {
    * @param data 
    * @param options 
    */
-  async save(model: string,query: any, data: any, options?: any) {
-    await this.db
+  async save(model: string, query: any, data: any, options?: any) {
+    return await this.db
       .collection(model)
       .update(
         query, 
@@ -47,7 +47,7 @@ class MongoDbDriver implements HCardT.DbDriver {
    * @param options 
    */
   async update(model: string, query: any, data: any, options?: any) {
-    await this.db
+    return await this.db
       .collection(model)
       .update(
         query, 

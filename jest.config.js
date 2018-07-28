@@ -10,8 +10,19 @@ module.exports = {
   },
   testRegex: "(/test/.*|(\\.|/)(test|spec))\\.tsx?$",
   modulePathIgnorePatterns: [
-    "/__snapshots__/.*"
+    "/__snapshots__/.*",
+    "/mock/index.ts",
+    "/*.mock.js",
+    "type.ts"
   ],
+  coverageThreshold: {
+    global: {
+      branches: 50,
+      functions: 50,
+      lines: 60,
+      statements: 60,
+    },
+  },
   moduleFileExtensions: [
     "ts",
     "tsx",

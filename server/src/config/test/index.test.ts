@@ -1,15 +1,9 @@
-import { makeConfig } from './index';
+import { makeConfig } from '../index';
+import { mockEnv } from '../../mock';
 
 describe('Test config maker', () => {
   test('test config object with all provided env variables', () => {
-    const env = <HCardT.Env>{
-      STATIC_ROOT: 'root',
-      PORT: 1234,
-      RENDER_MODE: 'ssr',
-      DB_URL: 'mongodb://localhost',
-      DB_NAME: 'test'
-    };
-    expect(makeConfig(env)).toMatchSnapshot();
+    expect(makeConfig(mockEnv)).toMatchSnapshot();
   });
 
   test('test config object with only env.STATIC_ROOT variable', () => {

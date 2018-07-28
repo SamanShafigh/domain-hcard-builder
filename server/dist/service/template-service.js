@@ -24,6 +24,7 @@ function html(body) {
   </html>
   `;
 }
+exports.html = html;
 function render(path, props) {
     const component = require(path).default;
     var body = ReactDom.renderToString(React.createElement(component, props));

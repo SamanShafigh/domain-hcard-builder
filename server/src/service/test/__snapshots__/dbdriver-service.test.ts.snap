@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test dbdriver service test mongodb driver to find one user properly 1`] = `
+Object {
+  "model": "User",
+  "options": Object {
+    "options": "some options",
+  },
+  "query": 1234,
+}
+`;
+
+exports[`Test dbdriver service test mongodb driver to save properly 1`] = `
+Object {
+  "data": Object {
+    "$set": Object {
+      "country": "country",
+      "email": "email",
+      "givenName": "givenName",
+      "houseNumber": "houseNumber",
+      "phone": "phone",
+      "postcode": "postcode",
+      "state": "state",
+      "street": "street",
+      "suburb": "suburb",
+      "surname": "surname",
+    },
+  },
+  "model": "User",
+  "options": Object {
+    "options": "some options",
+    "upsert": true,
+  },
+  "query": 1234,
+}
+`;
+
+exports[`Test dbdriver service test mongodb driver to update properly 1`] = `
+Object {
+  "data": Object {
+    "$set": Object {
+      "country": "country",
+      "email": "email",
+      "givenName": "givenName",
+      "houseNumber": "houseNumber",
+      "phone": "phone",
+      "postcode": "postcode",
+      "state": "state",
+      "street": "street",
+      "suburb": "suburb",
+      "surname": "surname",
+    },
+  },
+  "model": "User",
+  "options": Object {
+    "options": "some options",
+    "upsert": true,
+  },
+  "query": 1234,
+}
+`;

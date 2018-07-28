@@ -20,7 +20,7 @@ class UserService implements HCardT.UserService {
   async getUser(userId: string) {
     var result = await this.dbDriver
       .findOne(MODEL_NAME, { userId }, { _id: 0 });
-
+    
     return result? makeUser(result.data) : null;
   }  
 
@@ -31,7 +31,7 @@ class UserService implements HCardT.UserService {
    */
   async submitUser(userId: string, data: any) {
     const user = makeUser(data);
-    await this.dbDriver
+    return await this.dbDriver
       .update(MODEL_NAME, { userId }, { data: user });
   }
 
@@ -44,7 +44,7 @@ class UserService implements HCardT.UserService {
   async updateUser(userId: string, key: string, value: string) {
     var reference = `data.${key}`;
 
-    await this.dbDriver
+    return await this.dbDriver
       .update(MODEL_NAME, { userId }, { [reference]: value });
   }
 }

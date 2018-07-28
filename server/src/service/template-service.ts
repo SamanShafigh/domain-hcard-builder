@@ -6,7 +6,7 @@ interface Global { React: any; }
 declare var global: Global;
 global.React = React;
 
-function html(body: string) {
+export function html(body: string) {
   return `
   <!DOCTYPE html>
   <html lang="en">
