@@ -1,4 +1,5 @@
 import HCardT from '../type';
+import makeUser from '../model/user-model';
 
 /**
  * UserService is to abstract the main logic related to User
@@ -23,8 +24,10 @@ class UserService implements HCardT.UserService {
    * @param userId 
    * @param data 
    */
-  async submitUser(userId: string, data: HCardT.User) {
-    return await this.userRepository.save(userId, data);
+  async submitUser(userId: string, data: any) {
+    const user = makeUser(data);
+    
+    return await this.userRepository.save(userId, user);
   }
 
   /**
@@ -33,7 +36,7 @@ class UserService implements HCardT.UserService {
    * @param key 
    * @param value 
    */
-  async updateUser(userId: string, key: string, value: any) {
+  async updateUser(userId: string, key: string, value: string) {
     return await this.userRepository.update(userId, key, value);
   }
 }

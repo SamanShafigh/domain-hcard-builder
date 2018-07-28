@@ -23,7 +23,7 @@ declare namespace HCardT {
    */
   export interface KeyValue {
     key: string;
-    value: number|string;
+    value: string;
   }
 
   /**
@@ -108,7 +108,7 @@ declare namespace HCardT {
      * @param userId 
      * @param data 
      */
-    submitUser(userId: string, data: User): Promise<any>;
+    submitUser(userId: string, data: any): Promise<any>;
 
     /**
      * Update a user parameter
@@ -116,7 +116,7 @@ declare namespace HCardT {
      * @param key 
      * @param value 
      */
-    updateUser(userId: string, key: string, value: any): Promise<any>;
+    updateUser(userId: string, key: string, value: string): Promise<any>;
   }  
 
   /**

@@ -7,8 +7,8 @@ import HCardT from '../type';
  * UserController is to abstract the user related controllers
  */
 class UserController implements HCardT.UserController {
-  userService: HCardT.UserService
-  config: HCardT.Config
+  userService: HCardT.UserService;
+  config: HCardT.Config;
 
   constructor(userService: HCardT.UserService, config: HCardT.Config) {
     this.userService = userService;
