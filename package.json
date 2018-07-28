@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest --notify --config=jest.config.js",
+    "test:watch": "jest --notify --watch --config=jest.config.js",
     "start": "node ./server/dist/index.js",
     "start:spa": "RENDER_MODE=spa node ./server/dist/index.js",
     "dev:test": "jest",
     "dev:watch": "nodemon --watch 'server/src/**/*' -e ts,tsx --exec 'ts-node' ./server/src/index.ts",
-    "dev:watch:build": "tsc --watch"
+    "dev:watch:build": "tsc --watch",
+    "dev:build": "tsc"
   },
   "keywords": [],
   "author": "Saman Shafigh <saman.shafigh@gmail.com>",
@@ -23,6 +26,7 @@
     "react-dom": "15.4.1"
   },
   "devDependencies": {
+    "@types/jest": "23.3.1",
     "@types/koa": "2.0.46",
     "@types/koa-bodyparser": "5.0.1",
     "@types/koa-router": "7.0.30",
@@ -32,7 +36,9 @@
     "@types/react": "16.4.7",
     "@types/react-dom": "16.0.6",
     "jest": "23.4.1",
+    "mongodb-memory-server": "1.9.1",
     "nodemon": "1.18.3",
+    "ts-jest": "23.0.1",
     "ts-node": "7.0.0",
     "typescript": "2.9.2"
   }

@@ -2,13 +2,13 @@ import * as Koa from "koa";
 import * as middleware from './middleware';
 import { makeRouter } from './router';
 import { makeConfig } from './config';
-import { dbConnect } from './service/dbdriver-service';
+import { makeDbDriver } from './service/dbdriver-service';
 
 (async () => {
   const app = new Koa();
   const config = makeConfig(process.env)
-  const db = await dbConnect(config.dbUri, config.dbName);
-  const router = makeRouter(config, db);
+  const dbDriver = await makeDbDriver(config.dbUri, config.dbName);
+  const router = makeRouter(config, dbDriver);
   
   // Set my app custom middlewares
   app

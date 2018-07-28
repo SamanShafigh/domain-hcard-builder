@@ -1,14 +1,16 @@
 import HCardT from '../type';
 import makeUser from '../model/user-model';
 
+const MODEL_NAME = 'user'
+
 /**
  * UserService is to abstract the main logic related to User
  */
 class UserService implements HCardT.UserService {
-  userRepository: any
+  dbDriver: HCardT.DbDriver
   
-  constructor(userRepository: any) {
-    this.userRepository = userRepository;
+  constructor(dbDriver: HCardT.DbDriver) {
+    this.dbDriver = dbDriver;
   }
 
   /**
@@ -16,7 +18,10 @@ class UserService implements HCardT.UserService {
    * @param userId 
    */
   async getUser(userId: string) {
-    return await this.userRepository.get(userId);
+    var result = await this.dbDriver
+      .findOne(MODEL_NAME, { userId }, { _id: 0 });
+
+    return result? makeUser(result.data) : null;
   }  
 
   /**
@@ -26,8 +31,8 @@ class UserService implements HCardT.UserService {
    */
   async submitUser(userId: string, data: any) {
     const user = makeUser(data);
-    
-    return await this.userRepository.save(userId, user);
+    await this.dbDriver
+      .update(MODEL_NAME, { userId }, { data: user });
   }
 
   /**
@@ -37,7 +42,10 @@ class UserService implements HCardT.UserService {
    * @param value 
    */
   async updateUser(userId: string, key: string, value: string) {
-    return await this.userRepository.update(userId, key, value);
+    var reference = `data.${key}`;
+
+    await this.dbDriver
+      .update(MODEL_NAME, { userId }, { [reference]: value });
   }
 }
 

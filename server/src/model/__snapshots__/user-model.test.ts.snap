@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test user maker test make user object with all provided variables 1`] = `
+User {
+  "country": "country",
+  "email": "email",
+  "givenName": "givenName",
+  "houseNumber": "houseNumber",
+  "phone": "phone",
+  "postcode": "postcode",
+  "state": "state",
+  "street": "street",
+  "suburb": "suburb",
+  "surname": "surname",
+}
+`;
+
+exports[`Test user maker test make user object with some variables 1`] = `
+User {
+  "country": null,
+  "email": "email",
+  "givenName": "givenName",
+  "houseNumber": "houseNumber",
+  "phone": null,
+  "postcode": "postcode",
+  "state": null,
+  "street": null,
+  "suburb": "suburb",
+  "surname": null,
+}
+`;

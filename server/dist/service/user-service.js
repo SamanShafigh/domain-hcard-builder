@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const user_model_1 = require("../model/user-model");
 /**
  * UserService is to abstract the main logic related to User
  */
@@ -20,7 +21,8 @@ class UserService {
      * @param data
      */
     async submitUser(userId, data) {
-        return await this.userRepository.save(userId, data);
+        const user = user_model_1.default(data);
+        return await this.userRepository.save(userId, user);
     }
     /**
      * Update a user parameter

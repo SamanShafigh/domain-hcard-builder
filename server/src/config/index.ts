@@ -1,7 +1,7 @@
 import HCardT from '../type';
 
-export function makeConfig(env: any): HCardT.Config {
-  var config = {
+export function makeConfig(env: HCardT.Env): HCardT.Config {
+  var config = <HCardT.Config>{
     staticRoot: env.STATIC_ROOT || './client/dist',
     ssrPath: '../../../client/dist/main.js',
     spaPath: '../../../client/dist/_index.html',

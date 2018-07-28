@@ -68,11 +68,9 @@ class UserController implements HCardT.UserController {
  * @param {*} config 
  * @param {*} db 
  */
-export function make(config: HCardT.Config, db: any): HCardT.UserController {
+export function make(config: HCardT.Config, dbDriver: any): HCardT.UserController {
   return new UserController(
-    new UserService(
-      new UserRepo(db)
-    ),
+    new UserService(dbDriver),
     config
   )
 }

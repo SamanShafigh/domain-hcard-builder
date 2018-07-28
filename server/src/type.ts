@@ -2,9 +2,7 @@ import { Context } from "koa";
 import * as Router from "koa-router";
 
 declare namespace HCardT {
-  /**
-   * A user model
-   */
+  /** A user model */
   export interface User {
     givenName?: string;
     surname?: string;
@@ -18,30 +16,31 @@ declare namespace HCardT {
     country?: string;
   }
 
-  /**
-   * A simple key/value data structure
-   */
+  /** Env interface */
+  export interface Env {
+    STATIC_ROOT?: string;
+    PORT?: number;
+    RENDER_MODE?: string;
+    DB_URL?: string;
+    DB_NAME?: string;
+  }
+
+  /** A simple key/value data structure */
   export interface KeyValue {
     key: string;
     value: string;
   }
 
-  /**
-   * Our extended context over Koa context
-   */
+  /** Our extended context over Koa context */
   export interface CTX extends Context {
     view?: View;
     meta?: Meta;
   }
 
-  /**
-   * The next middleware
-   */
+  /** The next middleware */
   export type Next = () => Promise<any>
 
-  /**
-   * The error object
-   */
+  /** The error object */
   export type Error = any;
 
   /**
@@ -64,9 +63,7 @@ declare namespace HCardT {
     noscript: boolean;
   }
 
-  /**
-   * System main configuration data structure
-   */
+  /** System main configuration data structure */
   export interface Config {
     staticRoot: string;
     serverPort: number;
@@ -79,9 +76,7 @@ declare namespace HCardT {
 
   export type CntrMiddleware = Router.IMiddleware;
 
-  /**
-   * UserController is to abstract the user related controllers
-   */
+  /** UserController is to abstract the user related controllers */
   export class UserController {
     /** Get the view page */
     index(): CntrMiddleware;
@@ -93,9 +88,36 @@ declare namespace HCardT {
     update(): CntrMiddleware;
   }
 
-  /**
-   * UserService is to abstract the main logic related to User
-   */
+  /** DbDriver is to abstract the main logic related to work with a DB engine */
+  export class DbDriver {
+    /**
+     * Find an entity
+     * @param model 
+     * @param query 
+     * @param options 
+     */
+    findOne(model: string, query: any, options?: any): Promise<any>;
+    
+    /**
+     * Save an entity
+     * @param model 
+     * @param query 
+     * @param data 
+     * @param options 
+     */
+    save(model: string, query: any, data: any, options?: any): Promise<void>;
+    
+    /**
+     * Update entity
+     * @param model 
+     * @param query 
+     * @param data 
+     * @param options 
+     */
+    update(model: string, query: any, data: any, options?: any): Promise<void>;
+  }
+
+  /** UserService is to abstract the main logic related to User */
   export class UserService {
     /**
      * Get a user and if user does not exist returns null

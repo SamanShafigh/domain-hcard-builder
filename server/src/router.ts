@@ -1,9 +1,9 @@
 import * as Router from 'koa-router';
 import { make as makeUserController } from './controller/user-controller';
 
-export function makeRouter(config: any, db: any): Router {
+export function makeRouter(config: any, dbDriver: any): Router {
   // Make my controllers with their DI
-  var userCtrl = makeUserController(config, db)
+  var userCtrl = makeUserController(config, dbDriver)
 
   // Composing my routes
   var router = new Router();
