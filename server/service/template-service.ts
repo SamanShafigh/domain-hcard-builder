@@ -1,9 +1,15 @@
 const { createReadStream } = require('fs');
 const React = require('react');
 const ReactDom = require('react-dom/server')
+
+interface Global {
+  React: any;
+}
+
+declare var global: Global;
 global.React = React;
 
-function html(body) {
+function html(body: string) {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -24,7 +30,7 @@ function html(body) {
   `;
 } 
 
-function render(path, props) {
+function render(path: string, props: any) {
   const component = require(path).default;
   var body = ReactDom.renderToString(
     React.createElement(component, props)
@@ -33,7 +39,7 @@ function render(path, props) {
   return html(body);
 }
 
-function serve(path) {
+function serve(path: string) {
   return createReadStream(`${__dirname}/${path}`)
 }
 

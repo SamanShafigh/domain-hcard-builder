@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+      "module": "commonjs",
+      "target": "es2017",
+      "noImplicitAny": true,
+      "outDir": "./dist",
+      "sourceMap": true
+  },
+  "files": [
+    "./node_modules/@types/koa/index.d.ts",
+    "./node_modules/@types/koa-router/index.d.ts"
+  ],
+  "include": [
+      "./server/**/*"
+  ]
+}

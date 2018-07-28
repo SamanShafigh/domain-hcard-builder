@@ -1,3 +1,8 @@
+# Dev comment
+
+make sure you have Node 8.x (or above) installed
+
+
 # Domain Group Node.js Technical Test
 
 ## Background

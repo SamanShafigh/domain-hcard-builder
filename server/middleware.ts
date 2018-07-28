@@ -2,8 +2,8 @@ const serveStatic = require('koa-static');
 var bodyParser = require('koa-bodyparser');
 const tplService = require('./service/template-service')
 
-function responseTime() {
-  return async (ctx, next) => {
+export function responseTime() {
+  return async (ctx: any, next: any) => {
     const start = Date.now();
     await next();
     const ms = Date.now() - start;
@@ -11,8 +11,8 @@ function responseTime() {
   }
 }
 
-function logger() {
-  return async (ctx, next) => {
+export function logger() {
+  return async (ctx: any, next: any) => {
     const start = Date.now();
     await next();
     const ms = Date.now() - start;
@@ -20,9 +20,8 @@ function logger() {
   }
 }
 
-
-function handleMeta(renderMode) {
-  return async (ctx, next) => {
+export function handleMeta(renderMode: string) {
+  return async (ctx: any, next: any) => {
     // Maybe we can use 
     // <noscript>
     //  <a href="link to an api end point to set user view mode">
@@ -35,7 +34,7 @@ function handleMeta(renderMode) {
     var noscript = renderMode === 'ssr' || !userCanRunScript
     console.log(noscript)
     ctx.meta = {
-      userId: 1,
+      userId: 'a01467ec-5903-40ed-8614-3e33953ca739',
       noscript: noscript
     }
 
@@ -43,9 +42,9 @@ function handleMeta(renderMode) {
   }
 }
 
-function handleError() {
-  return async (ctx, next) => {
-    return next().catch((err) => {
+export function handleError() {
+  return async (ctx: any, next: any) => {
+    return next().catch((err: any) => {
       if (err.status == 401) {
         ctx.status = 401;
         ctx.body = `Oops! Protected resource, use Authorization\n`;
@@ -56,16 +55,16 @@ function handleError() {
   }
 }
 
-function handleParser() {
+export function handleParser() {
   return bodyParser();
 }
 
-function handleStatic(root) {
+export function handleStatic(root: string) {
   return serveStatic(root);
 }
 
-function renderView() {
-  return async (ctx, next) => {
+export function renderView() {
+  return async (ctx: any, next: any) => {
     // If we expect some restfull responses do this
     if (ctx.view.response !== undefined) {
       ctx.body = ctx.view.response;
@@ -86,15 +85,4 @@ function renderView() {
 
     await next();
   }
-}
-
-// Exposing my Public apis
-module.exports = {
-  responseTime,
-  logger,
-  handleMeta,
-  handleError,
-  handleParser,
-  handleStatic,
-  renderView,
 }

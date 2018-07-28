@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./server/index.js",
     "start:spa": "RENDER_MODE=spa node ./server/index.js",
-    "test": "jest"
+    "dev:watch": "nodemon --watch 'server/**/*' -e ts,tsx --exec 'ts-node' ./server/index.ts",
+    "dev:test": "jest"
   },
   "keywords": [],
   "author": "Saman Shafigh <saman.shafigh@gmail.com>",
@@ -21,6 +22,17 @@
     "react-dom": "15.4.1"
   },
   "devDependencies": {
-    "jest": "23.4.1"
+    "@types/koa": "2.0.46",
+    "@types/koa-bodyparser": "5.0.1",
+    "@types/koa-router": "7.0.30",
+    "@types/koa-static": "4.0.0",
+    "@types/mongodb": "3.1.2",
+    "@types/node": "10.5.3",
+    "@types/react": "16.4.7",
+    "@types/react-dom": "16.0.6",
+    "jest": "23.4.1",
+    "nodemon": "1.18.3",
+    "ts-node": "7.0.0",
+    "typescript": "2.9.2"
   }
 }

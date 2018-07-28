@@ -1,4 +1,6 @@
-function getKeyValue(data) {
+import HCardT from './type';
+
+export function getKeyValue(data: any): HCardT.KeyValue {
   if (typeof data !== "object") {
     throw new Error('Expect to have an object')
   }
@@ -8,8 +10,4 @@ function getKeyValue(data) {
     key: key,
     value: data[key]
   } 
-}
-
-module.exports = {
-  getKeyValue
 }

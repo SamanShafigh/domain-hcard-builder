@@ -1,4 +1,6 @@
-module.exports = (env) => {
+import HCardT from '../type';
+
+export function makeConfig(env: any): HCardT.Config {
   var config = {
     staticRoot: env.STATIC_ROOT || './client/dist',
     serverPort: env.PORT || 3030,

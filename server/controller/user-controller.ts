@@ -1,18 +1,26 @@
-const UserService = require('../service/user-service')
-const UserRepo = require('../repository/user-repository')
-const { getKeyValue } = require('../util')
+import UserService from '../service/user-service'
+import UserRepo from '../repository/user-repository'
+import { getKeyValue } from '../util'
+import HCardT from '../type';
 
 const USER_SSR_PATH = '../../client/dist/main.js';
 const USER_SPA_PATH = '../../client/dist/_index.html';
 
-class UserController {
-  constructor(userService, config) {
+/**
+ * UserController is to abstract the user related controllers
+ */
+class UserController implements HCardT.UserController {
+  userService: HCardT.UserService
+  config: HCardT.Config
+
+  constructor(userService: HCardT.UserService, config: HCardT.Config) {
     this.userService = userService;
     this.config = config;
   }
 
+  /** Get the view page */
   index() {
-    return async (ctx, next) => {
+    return async (ctx: HCardT.CTX, next: HCardT.Next) => {
       ctx.view = {
         component: USER_SSR_PATH, 
         template:  USER_SPA_PATH,
@@ -22,8 +30,9 @@ class UserController {
     }
   }
 
+  /** Submit a user data endpoint */
   submit() {
-    return async (ctx, next) => {
+    return async (ctx: HCardT.CTX, next: HCardT.Next) => {
       await this.userService.submitUser(
         ctx.meta.userId, 
         ctx.request.body
@@ -38,9 +47,10 @@ class UserController {
     }
   }
 
+  /** Update user data endpoint */
   update() {
-    return async (ctx, next) => {
-      var { key, value } = getKeyValue(ctx.request.body);
+    return async (ctx: HCardT.CTX, next: HCardT.Next) => {
+      var { key, value }: HCardT.KeyValue = getKeyValue(ctx.request.body);
       await this.userService.updateUser(
         ctx.meta.userId, 
         key,
@@ -56,12 +66,12 @@ class UserController {
 }
 
 /**
- * makeUserController makes a 
+ * make makes a 
  * 
  * @param {*} config 
  * @param {*} db 
  */
-function makeUserController(config, db) {
+export function make(config: HCardT.Config, db: any): HCardT.UserController {
   return new UserController(
     new UserService(
       new UserRepo(db)
@@ -69,8 +79,3 @@ function makeUserController(config, db) {
     config
   )
 }
-
-module.exports = {
-  UserController,
-  makeUserController 
-};

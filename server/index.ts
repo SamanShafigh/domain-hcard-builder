@@ -1,13 +1,14 @@
-const Koa = require('koa');
-const routeMaker = require('./router')
-const middleware = require('./middleware')
-const dbdriver = require('./service/dbdriver-service');
-const config = require('./config')(process.env);
+import * as Koa from "koa";
+import * as middleware from './middleware';
+import { makeRouter } from './router';
+import { makeConfig } from './config';
+import { dbConnect } from './service/dbdriver-service';
 
 (async () => {
+  const config = makeConfig(process.env)
   const app = new Koa();
-  const db = await dbdriver.connect(config);
-  const router = routeMaker(config, db);
+  const db = await dbConnect(config);
+  const router = makeRouter(config, db);
   
   // Set my app custom middlewares
   app
