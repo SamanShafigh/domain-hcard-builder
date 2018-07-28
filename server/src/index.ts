@@ -5,9 +5,9 @@ import { makeConfig } from './config';
 import { dbConnect } from './service/dbdriver-service';
 
 (async () => {
-  const config = makeConfig(process.env)
   const app = new Koa();
-  const db = await dbConnect(config);
+  const config = makeConfig(process.env)
+  const db = await dbConnect(config.dbUri, config.dbName);
   const router = makeRouter(config, db);
   
   // Set my app custom middlewares

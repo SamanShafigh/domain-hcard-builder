@@ -1,5 +1,5 @@
 import { Context } from "koa";
-import { Router } from "koa-router";
+import * as Router from "koa-router";
 
 declare namespace HCardT {
   /**
@@ -40,6 +40,11 @@ declare namespace HCardT {
   export type Next = () => Promise<any>
 
   /**
+   * The error object
+   */
+  export type Error = any;
+
+  /**
    * Data structure to represent how our render 
    * middleware is going to render the result 
    */
@@ -65,6 +70,8 @@ declare namespace HCardT {
   export interface Config {
     staticRoot: string;
     serverPort: number;
+    ssrPath: string,
+    spaPath: string,
     renderMode: 'ssr' | 'spa';
     dbUri: string;
     dbName: string;
@@ -75,7 +82,7 @@ declare namespace HCardT {
   /**
    * UserController is to abstract the user related controllers
    */
-  export declare class UserController {
+  export class UserController {
     /** Get the view page */
     index(): CntrMiddleware;
 
@@ -89,21 +96,19 @@ declare namespace HCardT {
   /**
    * UserService is to abstract the main logic related to User
    */
-  export declare class UserService {
-    userRepository: any
-
+  export class UserService {
     /**
      * Get a user and if user does not exist returns null
      * @param userId 
      */
-    async getUser(userId: string): Promise<User|null>;
+    getUser(userId: string): Promise<User|null>;
 
     /**
      * Submit a user data
      * @param userId 
      * @param data 
      */
-    async submitUser(userId: string, data: User): Promise<any>;
+    submitUser(userId: string, data: User): Promise<any>;
 
     /**
      * Update a user parameter
@@ -111,28 +116,26 @@ declare namespace HCardT {
      * @param key 
      * @param value 
      */
-    async updateUser(userId: string, key: string, value: any): Promise<any>;
+    updateUser(userId: string, key: string, value: any): Promise<any>;
   }  
 
   /**
    * UserRepository abstracts all the persisting 
    * logics related to a User model
    */
-  export declare class UserRepository {
-    db: any;
-
+  export class UserRepository {
     /**
      * Find and return a user from db or return null
      * @param userId 
      */
-    async get(userId: string): Promise<User|null>;
+    get(userId: string): Promise<User|null>;
     
     /**
      * Save a user data to db
      * @param userId 
      * @param data 
      */
-    async save(userId: string, data: User): Promise<void>;
+    save(userId: string, data: User): Promise<void>;
     
     /**
      * Update a user filed in db
@@ -140,7 +143,7 @@ declare namespace HCardT {
      * @param key 
      * @param value 
      */
-    async update(userId: string, key: string, value: any): Promise<void>;
+    update(userId: string, key: string, value: any): Promise<void>;
   }
 }
 

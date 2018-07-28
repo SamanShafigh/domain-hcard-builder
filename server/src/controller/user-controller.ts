@@ -3,9 +3,6 @@ import UserRepo from '../repository/user-repository'
 import { getKeyValue } from '../util'
 import HCardT from '../type';
 
-const USER_SSR_PATH = '../../client/dist/main.js';
-const USER_SPA_PATH = '../../client/dist/_index.html';
-
 /**
  * UserController is to abstract the user related controllers
  */
@@ -22,8 +19,8 @@ class UserController implements HCardT.UserController {
   index() {
     return async (ctx: HCardT.CTX, next: HCardT.Next) => {
       ctx.view = {
-        component: USER_SSR_PATH, 
-        template:  USER_SPA_PATH,
+        component: this.config.ssrPath, 
+        template:  this.config.spaPath,
         props: await this.userService.getUser(ctx.meta.userId)
       }
       await next();
@@ -39,8 +36,8 @@ class UserController implements HCardT.UserController {
       );
 
       ctx.view = {
-        component: USER_SSR_PATH, 
-        template:  USER_SPA_PATH,
+        component: this.config.ssrPath, 
+        template:  this.config.spaPath,
         props: await this.userService.getUser(ctx.meta.userId)
       }
       await next();

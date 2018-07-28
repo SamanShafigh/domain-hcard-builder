@@ -1,9 +1,13 @@
-const serveStatic = require('koa-static');
-var bodyParser = require('koa-bodyparser');
-const tplService = require('./service/template-service')
+import * as serveStatic from 'koa-static';
+import * as bodyParser from 'koa-bodyparser';
+import * as tplService from './service/template-service';
+import HCardT from './type';
 
+/**
+ * This middleware will add X-Response-Time
+ */
 export function responseTime() {
-  return async (ctx: any, next: any) => {
+  return async (ctx: HCardT.CTX, next: HCardT.Next) => {
     const start = Date.now();
     await next();
     const ms = Date.now() - start;
@@ -11,8 +15,11 @@ export function responseTime() {
   }
 }
 
+/**
+ * This middleware will do some basic log activities
+ */
 export function logger() {
-  return async (ctx: any, next: any) => {
+  return async (ctx: HCardT.CTX, next: HCardT.Next) => {
     const start = Date.now();
     await next();
     const ms = Date.now() - start;
@@ -20,8 +27,14 @@ export function logger() {
   }
 }
 
+/**
+ * This middleware will process some meta data, for example 
+ * JSON Web Tokens for user authenticate.
+ * We can also here define in which mode we should serve the app
+ * @param renderMode 
+ */
 export function handleMeta(renderMode: string) {
-  return async (ctx: any, next: any) => {
+  return async (ctx: HCardT.CTX, next: HCardT.Next) => {
     // Maybe we can use 
     // <noscript>
     //  <a href="link to an api end point to set user view mode">
@@ -32,8 +45,8 @@ export function handleMeta(renderMode: string) {
 
     // We can use ssr to force system to do server side rendering
     var noscript = renderMode === 'ssr' || !userCanRunScript
-    console.log(noscript)
     ctx.meta = {
+      // For now I set this to be a hardcoded ID
       userId: 'a01467ec-5903-40ed-8614-3e33953ca739',
       noscript: noscript
     }
@@ -42,9 +55,12 @@ export function handleMeta(renderMode: string) {
   }
 }
 
+/**
+ * This middleware will handle errors, we can do more here
+ */
 export function handleError() {
-  return async (ctx: any, next: any) => {
-    return next().catch((err: any) => {
+  return async (ctx: HCardT.CTX, next: HCardT.Next) => {
+    return next().catch((err: HCardT.Error) => {
       if (err.status == 401) {
         ctx.status = 401;
         ctx.body = `Oops! Protected resource, use Authorization\n`;
@@ -55,16 +71,27 @@ export function handleError() {
   }
 }
 
+/**
+ * This middleware will parse form submitted data
+ */
 export function handleParser() {
   return bodyParser();
 }
 
+/**
+ * This middleware will serve the static files
+ * @param root 
+ */
 export function handleStatic(root: string) {
   return serveStatic(root);
 }
 
+/**
+ * This middleware will render a proper response based on 
+ * ctx.meta.noscript option and ctx.view content
+ */
 export function renderView() {
-  return async (ctx: any, next: any) => {
+  return async (ctx: HCardT.CTX, next: HCardT.Next) => {
     // If we expect some restfull responses do this
     if (ctx.view.response !== undefined) {
       ctx.body = ctx.view.response;

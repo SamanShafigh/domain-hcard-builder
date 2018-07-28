@@ -1,11 +1,8 @@
-const { createReadStream } = require('fs');
-const React = require('react');
-const ReactDom = require('react-dom/server')
+import { createReadStream } from 'fs';
+import * as React from 'react';
+import * as ReactDom from 'react-dom/server';
 
-interface Global {
-  React: any;
-}
-
+interface Global { React: any; }
 declare var global: Global;
 global.React = React;
 
@@ -30,7 +27,7 @@ function html(body: string) {
   `;
 } 
 
-function render(path: string, props: any) {
+export function render(path: string, props: any) {
   const component = require(path).default;
   var body = ReactDom.renderToString(
     React.createElement(component, props)
@@ -39,11 +36,6 @@ function render(path: string, props: any) {
   return html(body);
 }
 
-function serve(path: string) {
+export function serve(path: string) {
   return createReadStream(`${__dirname}/${path}`)
-}
-
-module.exports = {
-  render,
-  serve
 }

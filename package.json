@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./server/index.js",
-    "start:spa": "RENDER_MODE=spa node ./server/index.js",
-    "dev:watch": "nodemon --watch 'server/**/*' -e ts,tsx --exec 'ts-node' ./server/index.ts",
-    "dev:test": "jest"
+    "start": "node ./server/dist/index.js",
+    "start:spa": "RENDER_MODE=spa node ./server/dist/index.js",
+    "dev:test": "jest",
+    "dev:watch": "nodemon --watch 'server/src/**/*' -e ts,tsx --exec 'ts-node' ./server/src/index.ts",
+    "dev:watch:build": "tsc --watch"
   },
   "keywords": [],
   "author": "Saman Shafigh <saman.shafigh@gmail.com>",

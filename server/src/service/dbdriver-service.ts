@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-export async function dbConnect({ dbUri, dbName }: any) {
+export async function dbConnect(dbUri: string, dbName: string): Promise<any> {
   return new Promise((resolve: any, reject: any) => {
     MongoClient.connect(dbUri, {useNewUrlParser: true}, (err: any, client: any) => {
       if (err) {
