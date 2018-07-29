@@ -2,6 +2,35 @@
 
 make sure you have Node 8.x (or above) installed
 
+To run the app in SSR mode
+```
+npm run start
+```
+
+To run the app in SPA mode
+```
+npm run start:spa
+```
+
+To run the app with some env variables
+- PORT: server port
+- RENDER_MODE: render mode, options are 'ssr' or 'spa'. The default is 'ssr'
+- DB_URL: your mongo db uri;
+- DB_NAME: your db name;
+
+```
+RENDER_MODE=spa npm run start
+```
+
+For running all test
+```
+npm run test
+```
+
+To build
+```
+nom run dev:build
+```
 
 # Domain Group Node.js Technical Test
 
