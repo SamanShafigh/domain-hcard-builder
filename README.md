@@ -1,8 +1,17 @@
 # Dev comment
 
-make sure you have Node 8.x (or above) installed
+## Run using docker
 
-To run the app manually please first make sure you have a mongodb server then run the following commands:
+Just run the following commands and then hit http://localhost:3030
+```
+docker-compose build
+docker-compose up
+```
+
+
+## Run the app manually
+
+make sure you have Node 8.x (or above) installed. Then make sure you have a mongodb server running and finally run the following commands:
 
 ```
 npm i
@@ -10,7 +19,7 @@ npm run build
 DB_URL=mongodb://192.168.99.101:27017 DB_NAME=domain-hcard PORT=3000 npm run start
 ```
 
-The env variables that this app supports are as follow:
+The env variables that this app supports are as follows:
 
 - PORT: server port
 - RENDER_MODE: render mode, options are 'ssr' or 'spa'. The default is 'ssr'
