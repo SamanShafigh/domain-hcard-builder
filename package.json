@@ -12,8 +12,8 @@
     "dev:test": "jest",
     "dev:watch": "nodemon --watch 'server/src/**/*' -e ts,tsx --exec 'ts-node' ./server/src/index.ts",
     "dev:watch:build": "tsc --watch",
-    "precommit": "node tools upstream && npm run pretest && npm run test",
-    "dev:build": "tsc"
+    "dev:build": "tsc",
+    "precommit": "npm run pretest && npm run test"
   },
   "keywords": [],
   "author": "Saman Shafigh <saman.shafigh@gmail.com>",
@@ -44,9 +44,11 @@
     "jest": "23.4.1",
     "mongodb-memory-server": "1.9.1",
     "nodemon": "1.18.3",
+    "pre-commit": "1.2.2",
     "ts-jest": "23.0.1",
     "ts-node": "7.0.0",
     "typescript": "2.9.2",
     "typescript-eslint-parser": "17.0.1"
-  }
+  },
+  "pre-commit": [ "precommit" ]
 }
