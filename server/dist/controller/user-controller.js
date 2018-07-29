@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_service_1 = require("../service/user-service");
+const error_1 = require("../lib/error");
 const util_1 = require("../util");
 /**
  * UserController is to abstract the user related controllers
@@ -13,6 +14,10 @@ class UserController {
     /** Get the view page */
     index() {
         return async (ctx, next) => {
+            // Validate incoming data. This is a naive implementation
+            if (ctx.meta.userId === undefined) {
+                throw new error_1.InvalidDataError('User ID is not provided');
+            }
             ctx.view = {
                 component: this.config.ssrPath,
                 template: this.config.spaPath,
@@ -24,6 +29,10 @@ class UserController {
     /** Submit a user data endpoint */
     submit() {
         return async (ctx, next) => {
+            // Validate incoming data. This is a naive implementation
+            if (ctx.meta.userId === undefined) {
+                throw new error_1.InvalidDataError('User ID is not provided');
+            }
             await this.userService.submitUser(ctx.meta.userId, ctx.request.body);
             ctx.view = {
                 component: this.config.ssrPath,
@@ -36,6 +45,10 @@ class UserController {
     /** Update user data endpoint */
     update() {
         return async (ctx, next) => {
+            // Validate incoming data. This is a naive implementation
+            if (ctx.meta.userId === undefined) {
+                throw new error_1.InvalidDataError('User ID is not provided');
+            }
             var { key, value } = util_1.getKeyValue(ctx.request.body);
             await this.userService.updateUser(ctx.meta.userId, key, value);
             ctx.view = {

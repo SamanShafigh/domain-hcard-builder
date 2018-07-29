@@ -11,6 +11,6 @@
   ],
   "exclude": [
     "./server/src/**/*.test.ts",
-    "./server/src/mock/*.*"
+    "./server/src/lib/mock/*.*"
   ]
 }

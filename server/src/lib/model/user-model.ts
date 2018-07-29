@@ -1,4 +1,4 @@
-import HCardT from '../type';
+import HCardT from '../../type';
 
 /**
  * A user model

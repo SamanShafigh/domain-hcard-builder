@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_model_1 = require("../model/user-model");
+const user_model_1 = require("../lib/model/user-model");
 const MODEL_NAME = 'user';
 /**
  * UserService is to abstract the main logic related to User

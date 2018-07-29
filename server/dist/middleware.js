@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const serveStatic = require("koa-static");
 const bodyParser = require("koa-bodyparser");
 const tplService = require("./service/template-service");
+const error_1 = require("./lib/error");
 /**
  * This middleware will add X-Response-Time
  */
@@ -59,12 +60,16 @@ exports.handleMeta = handleMeta;
 function handleError() {
     return async (ctx, next) => {
         return next().catch((err) => {
-            if (err.status == 401) {
+            if (err instanceof error_1.InvalidDataError) {
+                ctx.status = 400;
+                ctx.body = `Oops! Invalid data. Error: ${err.message}\n`;
+            }
+            else if (err.status == 401) {
                 ctx.status = 401;
                 ctx.body = `Oops! Protected resource, use Authorization\n`;
             }
             else {
-                ctx.body = `Oops! We're having a problem. Error: ${err}\n`;
+                ctx.body = `Oops! We're having a problem. Error: ${err.message}\n`;
             }
         });
     };

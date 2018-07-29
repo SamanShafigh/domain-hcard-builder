@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Koa = require("koa");
 const middleware = require("./middleware");
 const router_1 = require("./router");
-const config_1 = require("./config");
+const config_1 = require("./lib/config");
 const dbdriver_service_1 = require("./service/dbdriver-service");
 (async () => {
     const app = new Koa();

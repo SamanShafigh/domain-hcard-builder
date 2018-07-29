@@ -1,4 +1,4 @@
-import HCardT from './type';
+import HCardT from '../../type';
 
 export const mockEnv = <HCardT.Env>{
   STATIC_ROOT: 'root',
