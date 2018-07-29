@@ -9,7 +9,7 @@ import { makeDbDriver } from './service/dbdriver-service';
   const config = makeConfig(process.env)
   const dbDriver = await makeDbDriver(config.dbUri, config.dbName);
   const router = makeRouter(config, dbDriver);
-  
+
   // Set my app custom middlewares
   app
     .use(middleware.handleError())

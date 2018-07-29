@@ -1,21 +1,29 @@
-version: '3'
+version: "2"
 services:
-  domain_database:
-    image: mongo:3.6.1
-    container_name: uv-mongodb
-    ports:
-        - 27017:27017
-    command: mongod
-
-  domain_api:
+  app:
+    container_name: app
+    build: .
     restart: always
-    build:
-      context: .
-      dockerfile: ./Dockerfile
     entrypoint: /bin/bash -c "npm run start"
     ports:
       - "3030:3030"
+    links:
+      - mongo
+    environment:
+      - DB_URL=mongodb://mongo:27017/domain
     volumes:
       - ".:/usr/app"
     depends_on:
-      - "domain_database"
+      - "mongo"
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - mongo:/data/db
+    ports:
+      - "27017:27017"
+
+volumes:
+    mongo:
+        driver: "local"
