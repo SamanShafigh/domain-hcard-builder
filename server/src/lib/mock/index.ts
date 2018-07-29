@@ -10,8 +10,6 @@ export const mockEnv = <HCardT.Env>{
 
 export const mockConfig = {
   staticRoot: './client/dist',
-  ssrPath: './dist/main.js',
-  spaPath: './dist/_index.html',
   serverPort: 3030,
   renderMode: 'ssr',
   dbUri: 'mongodb://localhost',
@@ -58,9 +56,9 @@ export const mockCtxWithBody = {
 }
 
 export const mockDbDriver = {
-  findOne: (model, query, options) => (Promise.resolve({ data: mockUser })),
-  save: (model, query, data, options) => ({ model, query, data, options }),
-  update: (model, query, data, options) => ({ model, query, data, options }),
+  findOne: (model, query, options) => Promise.resolve({ data: mockUser }),
+  save: (model, query, data, options) => Promise.resolve({ model, query, data, options }),
+  update: (model, query, data, options) => Promise.resolve({ model, query, data, options }),
 }
 
 export const mockMongoDbDriver = {

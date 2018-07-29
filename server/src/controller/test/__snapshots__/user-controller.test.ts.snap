@@ -7,7 +7,7 @@ Object {
     "userId": "1234",
   },
   "view": Object {
-    "component": "./dist/main.js",
+    "component": "../../../client/dist/main.js",
     "props": User {
       "country": "country",
       "email": "email",
@@ -20,7 +20,7 @@ Object {
       "suburb": "suburb",
       "surname": "surname",
     },
-    "template": "./dist/_index.html",
+    "template": "../../../client/dist/_index.html",
   },
 }
 `;
@@ -46,7 +46,7 @@ Object {
     },
   },
   "view": Object {
-    "component": "./dist/main.js",
+    "component": "../../../client/dist/main.js",
     "props": User {
       "country": "country",
       "email": "email",
@@ -59,7 +59,7 @@ Object {
       "suburb": "suburb",
       "surname": "surname",
     },
-    "template": "./dist/_index.html",
+    "template": "../../../client/dist/_index.html",
   },
 }
 `;

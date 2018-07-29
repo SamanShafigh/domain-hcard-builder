@@ -3,6 +3,13 @@ import { InvalidDataError } from '../lib/error';
 import { getKeyValue } from '../util';
 import HCardT from '../type';
 
+export const View = {
+  // This component is used for a ssr
+  component: '../../../client/dist/main.js',
+  // This template file is used for serving a spa
+  template: '../../../client/dist/_index.html',
+}
+
 /**
  * UserController is to abstract the user related controllers
  */
@@ -24,8 +31,8 @@ class UserController implements HCardT.UserController {
       }
 
       ctx.view = {
-        component: this.config.ssrPath, 
-        template:  this.config.spaPath,
+        component: View.component, 
+        template:  View.template,
         props: await this.userService.getUser(ctx.meta.userId)
       }
       await next();
@@ -46,8 +53,8 @@ class UserController implements HCardT.UserController {
       );
 
       ctx.view = {
-        component: this.config.ssrPath, 
-        template:  this.config.spaPath,
+        component: View.component, 
+        template:  View.template,
         props: await this.userService.getUser(ctx.meta.userId)
       }
       await next();

@@ -3,6 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const user_service_1 = require("../service/user-service");
 const error_1 = require("../lib/error");
 const util_1 = require("../util");
+exports.View = {
+    // This component is used for a ssr
+    component: '../../../client/dist/main.js',
+    // This template file is used for serving a spa
+    template: '../../../client/dist/_index.html',
+};
 /**
  * UserController is to abstract the user related controllers
  */
@@ -19,8 +25,8 @@ class UserController {
                 throw new error_1.InvalidDataError('User ID is not provided');
             }
             ctx.view = {
-                component: this.config.ssrPath,
-                template: this.config.spaPath,
+                component: exports.View.component,
+                template: exports.View.template,
                 props: await this.userService.getUser(ctx.meta.userId)
             };
             await next();
@@ -35,8 +41,8 @@ class UserController {
             }
             await this.userService.submitUser(ctx.meta.userId, ctx.request.body);
             ctx.view = {
-                component: this.config.ssrPath,
-                template: this.config.spaPath,
+                component: exports.View.component,
+                template: exports.View.template,
                 props: await this.userService.getUser(ctx.meta.userId)
             };
             await next();

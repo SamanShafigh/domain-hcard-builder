@@ -67,8 +67,6 @@ declare namespace HCardT {
   export interface Config {
     staticRoot: string;
     serverPort: number;
-    ssrPath: string,
-    spaPath: string,
     renderMode: 'ssr' | 'spa';
     dbUri: string;
     dbName: string;

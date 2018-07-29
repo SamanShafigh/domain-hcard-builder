@@ -6,8 +6,6 @@ Object {
   "dbUri": "mongodb://192.168.99.101:27017/domain",
   "renderMode": "ssr",
   "serverPort": 3030,
-  "spaPath": "../../../client/dist/_index.html",
-  "ssrPath": "../../../client/dist/main.js",
   "staticRoot": "./client/dist",
 }
 `;
@@ -18,8 +16,6 @@ Object {
   "dbUri": "mongodb://localhost",
   "renderMode": "ssr",
   "serverPort": 1234,
-  "spaPath": "../../../client/dist/_index.html",
-  "ssrPath": "../../../client/dist/main.js",
   "staticRoot": "root",
 }
 `;
@@ -30,8 +26,6 @@ Object {
   "dbUri": "mongodb://192.168.99.101:27017/domain",
   "renderMode": "ssr",
   "serverPort": 3030,
-  "spaPath": "../../../client/dist/_index.html",
-  "ssrPath": "../../../client/dist/main.js",
   "staticRoot": "root",
 }
 `;
