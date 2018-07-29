@@ -13,6 +13,8 @@ Note: By default the app is running on a SSR mode if you like the app to run in 
 RENDER_MODE=spa
 ```
 
+Implementation logic: my idea was to implement the app in a way that can support both SSR and SPA mode. The backend which was the only scope of this project can support this with some minimal change in `middleware:handleMeta` 
+
 ## Run the app manually
 
 make sure you have Node 8.x (or above) installed. Then make sure you have a mongodb server running and finally run the following commands:
@@ -39,3 +41,5 @@ For running all tests
 ```
 npm run test
 ```
+
+Test coverage is also included in this repository. Please check the coverage directory.
