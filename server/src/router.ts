@@ -1,7 +1,8 @@
 import * as Router from 'koa-router';
+import HCardT from './type';
 import { make as makeUserController } from './controller/user-controller';
 
-export function makeRouter(config: any, dbDriver: any): Router {
+export function makeRouter(config: HCardT.Config, dbDriver: HCardT.DbDriver): Router {
   // Make my controllers with their DI
   var userCtrl = makeUserController(config, dbDriver)
 
