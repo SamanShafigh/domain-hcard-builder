@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test config maker tes config object without any env variable 1`] = `
+Object {
+  "dbName": "domain-hcard",
+  "dbUri": "mongodb://localhost:27017",
+  "renderMode": "ssr",
+  "serverPort": 3030,
+  "staticRoot": "./client/dist",
+}
+`;
+
+exports[`Test config maker test config object with all provided env variables 1`] = `
+Object {
+  "dbName": "test",
+  "dbUri": "mongodb://localhost",
+  "renderMode": "ssr",
+  "serverPort": 1234,
+  "staticRoot": "root",
+}
+`;
+
+exports[`Test config maker test config object with only env.STATIC_ROOT variable 1`] = `
+Object {
+  "dbName": "domain-hcard",
+  "dbUri": "mongodb://localhost:27017",
+  "renderMode": "ssr",
+  "serverPort": 3030,
+  "staticRoot": "root",
+}
+`;

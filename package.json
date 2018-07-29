@@ -49,5 +49,7 @@
     "typescript": "2.9.2",
     "typescript-eslint-parser": "17.0.1"
   },
-  "pre-commit": [ "precommit" ]
+  "pre-commit": [
+    "precommit"
+  ]
 }

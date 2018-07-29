@@ -2,22 +2,16 @@
 
 make sure you have Node 8.x (or above) installed
 
-First build it
+To run the app manually please first make sure you have a mongodb server then run the following commands:
+
 ```
-nom run build
+npm i
+npm run build
+DB_URL=mongodb://192.168.99.101:27017 DB_NAME=domain-hcard PORT=3000 npm run start
 ```
 
-To run the app in SSR mode
-```
-npm run start
-```
+The env variables that this app supports are as follow:
 
-To run the app in SPA mode
-```
-npm run start:spa
-```
-
-To run the app with some env variables
 - PORT: server port
 - RENDER_MODE: render mode, options are 'ssr' or 'spa'. The default is 'ssr'
 - DB_URL: your mongo db uri;
@@ -26,10 +20,6 @@ To run the app with some env variables
 For example to run it in a SPA mode
 ```
 RENDER_MODE=spa npm run start
-```
-or
-```
-DB_URL=mongodb://192.168.99.101:27017 DB_NAME=saman PORT=3000 npm run start
 ```
 
 For running all tests
