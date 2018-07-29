@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "pretest": "eslint --ignore-path .eslintignore .",
     "test": "jest --bail --watch --config=jest.config.js",
     "test:watch": "jest --notify --bail --watch --config=jest.config.js",
     "start": "node ./server/dist/index.js",
@@ -11,6 +12,7 @@
     "dev:test": "jest",
     "dev:watch": "nodemon --watch 'server/src/**/*' -e ts,tsx --exec 'ts-node' ./server/src/index.ts",
     "dev:watch:build": "tsc --watch",
+    "precommit": "node tools upstream && npm run pretest && npm run test",
     "dev:build": "tsc"
   },
   "keywords": [],
@@ -35,11 +37,16 @@
     "@types/node": "10.5.3",
     "@types/react": "16.4.7",
     "@types/react-dom": "16.0.6",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb-base": "13.0.0",
+    "eslint-plugin-import": "2.13.0",
+    "eslint-plugin-typescript": "0.12.0",
     "jest": "23.4.1",
     "mongodb-memory-server": "1.9.1",
     "nodemon": "1.18.3",
     "ts-jest": "23.0.1",
     "ts-node": "7.0.0",
-    "typescript": "2.9.2"
+    "typescript": "2.9.2",
+    "typescript-eslint-parser": "17.0.1"
   }
 }

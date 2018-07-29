@@ -1,5 +1,5 @@
 import HCardT from '../type';
-import makeUser from '../model/user-model';
+import makeUser from '../lib/model/user-model';
 
 const MODEL_NAME = 'user'
 

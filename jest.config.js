@@ -1,19 +1,19 @@
 module.exports = {
   testEnvironment: 'node',
   collectCoverage: true,
-  coverageReporters: ["json", "html"],  
+  coverageReporters: ['json', 'html'],
   roots: [
-    "<rootDir>/server/src"
+    '<rootDir>/server/src',
   ],
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    '^.+\\.tsx?$': 'ts-jest',
   },
-  testRegex: "(/test/.*|(\\.|/)(test|spec))\\.tsx?$",
+  testRegex: '(/test/.*|(\\.|/)(test|spec))\\.tsx?$',
   modulePathIgnorePatterns: [
-    "/__snapshots__/.*",
-    "/mock/index.ts",
-    "/*.mock.js",
-    "type.ts"
+    '/__snapshots__/.*',
+    '/mock/index.ts',
+    '/*.mock.js',
+    'type.ts',
   ],
   coverageThreshold: {
     global: {
@@ -24,11 +24,11 @@ module.exports = {
     },
   },
   moduleFileExtensions: [
-    "ts",
-    "tsx",
-    "js",
-    "jsx",
-    "json",
-    "node"
+    'ts',
+    'tsx',
+    'js',
+    'jsx',
+    'json',
+    'node',
   ],
-}
+};

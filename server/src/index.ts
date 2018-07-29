@@ -1,7 +1,7 @@
 import * as Koa from "koa";
 import * as middleware from './middleware';
 import { makeRouter } from './router';
-import { makeConfig } from './config';
+import { makeConfig } from './lib/config';
 import { makeDbDriver } from './service/dbdriver-service';
 
 (async () => {

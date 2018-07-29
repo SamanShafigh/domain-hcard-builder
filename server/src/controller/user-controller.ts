@@ -1,5 +1,6 @@
-import UserService from '../service/user-service'
-import { getKeyValue } from '../util'
+import UserService from '../service/user-service';
+import { InvalidDataError } from '../lib/error';
+import { getKeyValue } from '../util';
 import HCardT from '../type';
 
 /**
@@ -17,6 +18,11 @@ class UserController implements HCardT.UserController {
   /** Get the view page */
   index() {
     return async (ctx: HCardT.CTX, next: HCardT.Next) => {
+      // Validate incoming data. This is a naive implementation
+      if (ctx.meta.userId === undefined) {
+        throw new InvalidDataError('User ID is not provided');
+      }
+
       ctx.view = {
         component: this.config.ssrPath, 
         template:  this.config.spaPath,
@@ -29,6 +35,11 @@ class UserController implements HCardT.UserController {
   /** Submit a user data endpoint */
   submit() {
     return async (ctx: HCardT.CTX, next: HCardT.Next) => {
+      // Validate incoming data. This is a naive implementation
+      if (ctx.meta.userId === undefined) {
+        throw new InvalidDataError('User ID is not provided');
+      }
+
       await this.userService.submitUser(
         ctx.meta.userId, 
         ctx.request.body
@@ -46,6 +57,11 @@ class UserController implements HCardT.UserController {
   /** Update user data endpoint */
   update() {
     return async (ctx: HCardT.CTX, next: HCardT.Next) => {
+      // Validate incoming data. This is a naive implementation
+      if (ctx.meta.userId === undefined) {
+        throw new InvalidDataError('User ID is not provided');
+      }
+
       var { key, value }: HCardT.KeyValue = getKeyValue(ctx.request.body);
       await this.userService.updateUser(
         ctx.meta.userId, 

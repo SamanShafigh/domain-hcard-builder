@@ -70,5 +70,5 @@ export const mockMongoDbDriver = {
   })
 }
 
-export const mockReactComponentPath = '../mock/component.mock.js'
-export const mockHtmlPagePath = '../mock/page.mock.html'
+export const mockReactComponentPath = '../lib/mock/component.mock.js'
+export const mockHtmlPagePath = '../lib/mock/page.mock.html'

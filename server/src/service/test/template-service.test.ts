@@ -1,5 +1,5 @@
 import * as TemplateService from '../template-service';
-import { mockReactComponentPath, mockHtmlPagePath } from '../../mock';
+import { mockReactComponentPath, mockHtmlPagePath } from '../../lib/mock';
 import * as React from 'react';
 
 describe('Test template service', () => {

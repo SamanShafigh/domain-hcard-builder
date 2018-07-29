@@ -1,12 +1,14 @@
 import UserService from '../../service/user-service';
 import * as dbdriver from '../../service/dbdriver-service';
 import { make } from '../user-controller';
+import { InvalidDataError } from '../../lib/error';
+
 import { 
   mockConfig, 
   mockUser, 
   mockCtx, 
   mockCtxWithBody, 
-  mockDbDriver } from '../../mock';
+  mockDbDriver } from '../../lib/mock';
 
 let userController;
 jest.mock('../../service/dbdriver-service');
@@ -43,4 +45,49 @@ describe('Test user controller', () => {
 
     expect(ctx).toMatchSnapshot()
   });
+
+  test('test to make sure we throw proper error on invalid data in index action', async () => {
+    var ctx = Object.assign({}, mockCtx);
+    // Set some invalid data
+    ctx.meta.userId = undefined;
+
+    try {
+      var middleware = await userController.index();
+      await middleware(ctx, () => {});
+      expect(true).toBeFalsy();
+    } catch (e) {
+      expect(e).toBeInstanceOf(InvalidDataError);
+      expect(e.message).toBe('User ID is not provided')
+    }
+  });  
+
+  test('test to make sure we throw proper error on invalid data in submit action', async () => {
+    var ctx = Object.assign({}, mockCtxWithBody);
+    // Set some invalid data
+    ctx.meta.userId = undefined;
+
+    try {
+      var middleware = await userController.submit();
+      await middleware(ctx, () => {});
+      expect(true).toBeFalsy();
+    } catch (e) {
+      expect(e).toBeInstanceOf(InvalidDataError);
+      expect(e.message).toBe('User ID is not provided')
+    }
+  }); 
+
+  test('test to make sure we throw proper error on invalid data in update action', async () => {
+    var ctx = Object.assign({}, mockCtxWithBody);
+    // Set some invalid data
+    ctx.meta.userId = undefined;
+
+    try {
+      var middleware = await userController.update();
+      await middleware(ctx, () => {});
+      expect(true).toBeFalsy();
+    } catch (e) {
+      expect(e).toBeInstanceOf(InvalidDataError);
+      expect(e.message).toBe('User ID is not provided')
+    }
+  });     
 });

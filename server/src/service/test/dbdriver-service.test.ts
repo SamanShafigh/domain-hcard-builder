@@ -1,5 +1,5 @@
 import { MongoDbDriver } from '../../service/dbdriver-service';
-import { mockUser, mockMongoDbDriver } from '../../mock';
+import { mockUser, mockMongoDbDriver } from '../../lib/mock';
 import HCardT from '../type';
 
 describe('Test dbdriver service', () => {

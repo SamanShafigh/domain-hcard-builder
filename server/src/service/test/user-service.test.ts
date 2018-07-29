@@ -1,6 +1,6 @@
 import UserService from '../user-service';
 import * as dbdriver from '../../service/dbdriver-service';
-import { mockUser, mockDbDriver } from '../../mock';
+import { mockUser, mockDbDriver } from '../../lib/mock';
 import HCardT from '../type';
 
 let userService: HCardT.UserService;

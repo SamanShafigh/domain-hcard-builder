@@ -1,4 +1,4 @@
-import HCardT from '../type';
+import HCardT from '../../type';
 
 export function makeConfig(env: HCardT.Env): HCardT.Config {
   var config = <HCardT.Config>{

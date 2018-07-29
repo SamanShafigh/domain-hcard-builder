@@ -1,6 +1,7 @@
 import * as serveStatic from 'koa-static';
 import * as bodyParser from 'koa-bodyparser';
 import * as tplService from './service/template-service';
+import { InvalidDataError } from './lib/error';
 import HCardT from './type';
 
 /**
@@ -61,11 +62,14 @@ export function handleMeta(renderMode: string) {
 export function handleError() {
   return async (ctx: HCardT.CTX, next: HCardT.Next) => {
     return next().catch((err: HCardT.Error) => {
-      if (err.status == 401) {
+      if (err instanceof InvalidDataError) {
+        ctx.status = 400;
+        ctx.body = `Oops! Invalid data. Error: ${err.message}\n`;
+      } else if (err.status == 401) {
         ctx.status = 401;
         ctx.body = `Oops! Protected resource, use Authorization\n`;
       } else {
-        ctx.body = `Oops! We're having a problem. Error: ${err}\n`;
+        ctx.body = `Oops! We're having a problem. Error: ${err.message}\n`;
       }
     });
   }
