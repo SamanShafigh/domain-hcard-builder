@@ -4,15 +4,13 @@ services:
     container_name: app
     build: .
     restart: always
-    entrypoint: /bin/bash -c "npm install; npm run build; npm run start"
+    entrypoint: /bin/bash -c "npm run start"
     ports:
       - "3030:3030"
     links:
       - mongo
     environment:
       - DB_URL=mongodb://mongo:27017/domain
-    volumes:
-      - ".:/usr/app"
     depends_on:
       - "mongo"
 
