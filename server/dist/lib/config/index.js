@@ -5,8 +5,8 @@ function makeConfig(env) {
         staticRoot: env.STATIC_ROOT || './client/dist',
         serverPort: env.PORT || 3030,
         renderMode: env.RENDER_MODE || 'ssr',
-        dbUri: env.DB_URL || 'mongodb://192.168.99.101:27017/domain',
-        dbName: env.DB_NAME || 'hcard',
+        dbUri: env.DB_URL || 'mongodb://localhost:27017',
+        dbName: env.DB_NAME || 'domain-hcard',
     };
     return config;
 }

@@ -2,6 +2,11 @@
 
 make sure you have Node 8.x (or above) installed
 
+First build it
+```
+nom run build
+```
+
 To run the app in SSR mode
 ```
 npm run start
@@ -18,18 +23,18 @@ To run the app with some env variables
 - DB_URL: your mongo db uri;
 - DB_NAME: your db name;
 
+For example to run it in a SPA mode
 ```
 RENDER_MODE=spa npm run start
 ```
+or
+```
+DB_URL=mongodb://192.168.99.101:27017 DB_NAME=saman PORT=3000 npm run start
+```
 
-For running all test
+For running all tests
 ```
 npm run test
-```
-
-To build
-```
-nom run dev:build
 ```
 
 # Domain Group Node.js Technical Test

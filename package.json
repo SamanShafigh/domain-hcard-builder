@@ -6,13 +6,12 @@
   "scripts": {
     "pretest": "eslint --ignore-path .eslintignore .",
     "test": "jest --config=jest.config.js",
-    "test:watch": "jest --notify --bail --watch --config=jest.config.js",
+    "build": "tsc",
     "start": "node ./server/dist/index.js",
     "start:spa": "RENDER_MODE=spa node ./server/dist/index.js",
-    "dev:test": "jest",
     "dev:watch": "nodemon --watch 'server/src/**/*' -e ts,tsx --exec 'ts-node' ./server/src/index.ts",
     "dev:watch:build": "tsc --watch",
-    "dev:build": "tsc",
+    "dev:test": "jest --notify --bail --watch --config=jest.config.js",
     "precommit": "npm run pretest && npm run test"
   },
   "keywords": [],
