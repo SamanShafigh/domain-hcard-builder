@@ -82,7 +82,8 @@ Triggered when the user clicks "Submit" on the form.
 Data will come in with a `application/x-www-form-urlencoded` content type:
 
 ```
-givenName=Sam&surname=Fairfax&email=sam.fairfax%40fairfaxmedia.com.au&phone=0292822833&houseNumber=100&street=Harris+Street&suburb=Pyrmont&state=NSW&postcode=2009&country=Australia
+givenName=Sam&surname=Fairfax&email=sam.fairfax%40fairfaxmedia.com.au&phone=0292822833&
+houseNumber=100&street=Harris+Street&suburb=Pyrmont&state=NSW&postcode=2009&country=Australia
 ```
 
 **POST `/update`**:
