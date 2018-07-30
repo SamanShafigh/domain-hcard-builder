@@ -30,6 +30,9 @@ class UserController implements HCardT.UserController {
         throw new InvalidDataError('User ID is not provided');
       }
 
+      // Here I just compose a view object that is used in my middleware:renderView
+      // function. Based on the user view mode we will render a proper response whether 
+      // a spa or a ssr page
       ctx.view = {
         component: View.component, 
         template:  View.template,
@@ -85,10 +88,10 @@ class UserController implements HCardT.UserController {
 }
 
 /**
- * make makes a 
+ * make makes a UserController object
  * 
  * @param {*} config 
- * @param {*} db 
+ * @param {*} dbDriver 
  */
 export function make(config: HCardT.Config, dbDriver: any): HCardT.UserController {
   return new UserController(
