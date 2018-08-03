@@ -1,6 +1,6 @@
-# Koa app to switch between SSR or SPA of a React application
+# Koa react switch (SSR/SPA)
 
-This is a node server which;
+This is a node server with Koa that can switch between SSR or SPA of a React application
 
 - Serves up the SPA
 - Server renders the SPA to support non-JS clients
