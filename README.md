@@ -1,4 +1,26 @@
-# Dev comment
+# Koa app to switch between SSR or SPA of a React application
+
+This is a node server which;
+
+- Serves up the SPA
+- Server renders the SPA to support non-JS clients
+- Saves user inputed data to the server as they switch between form fields
+- Saves completed form data on user submission
+- On page reload, populates the form fields with the values previous saved
+- Is stateless, to support auto-scaling
+
+Implementation logic: my idea is to implement an app in a way that can support both SSR and SPA mode. The backend which was the only scope of this project can support this with some minimal change in `middleware:handleMeta` 
+
+We could use the following tag in our html template and if user does not have js support 
+we can set a flag for this user amd each following request form this user will include this flag in the header. The middleware:handleMeta can look for this header and switch between SSR or SPA mode properly
+
+```
+ <noscript>
+  <a href="link to an api end point to set user view mode">
+    View this site in noscript mode
+  </a>
+ </noscript>
+```
 
 ## Run using docker
 
@@ -12,8 +34,6 @@ Note: By default the app is running on a SSR mode if you like the app to run in 
 ```
 RENDER_MODE=spa
 ```
-
-Implementation logic: my idea was to implement the app in a way that can support both SSR and SPA mode. The backend which was the only scope of this project can support this with some minimal change in `middleware:handleMeta` 
 
 ## Run the app manually
 
